@@ -1,6 +1,12 @@
 import smtplib
 from email.message import EmailMessage
 
+
+def recuperarInfoExcel():
+    pass
+
+
+
 def enviarMail():
     
     remitente = "tbond@uade.edu.ar"
@@ -31,4 +37,3 @@ def enviarMail():
     server.quit()
     
     
-enviarMail()
