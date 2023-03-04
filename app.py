@@ -1,6 +1,8 @@
 import smtplib
 from email.message import EmailMessage
 import pandas as pd
+from tkinter import * 
+from tkinter import ttk
 
 def recuperarInfoExcel(hoja:str, busqueda:str, id:str):
     path = 'baseDatos.xlsx'
@@ -11,25 +13,29 @@ def recuperarInfoExcel(hoja:str, busqueda:str, id:str):
     else:
         return '¡El contenedor no se ha encontrado!\n'
     
-def buscarMateria(busqueda:str):    
+def buscarMateria( self:str):
+    busqueda = self.materia.get()
     hoja = 'materia'
     id = 'codigo'
     result = recuperarInfoExcel(hoja, busqueda, id)
-    print(result)
-    return result
+    self.tree = ttk.Label('', text=result ).grid(column=1, row=4)
     
-def buscarProfesores(busqueda:str):
+def buscarProfesores(self:str):
+    busqueda = self.profe.get()
     hoja = 'profes'
     id = 'legajo'
-    
-    return recuperarInfoExcel(hoja, id, busqueda)
+    result = recuperarInfoExcel(hoja, id, busqueda)
+    self.tree = ttk.Label('', text=result ).grid(column=1, row=4)
 
-def buscarCurso(busqueda:str):
+def buscarCurso(self:str):
+    busqueda = self.curso.get()
     hoja = 'curso'
     id = 'numero'
+    result = recuperarInfoExcel(hoja,id,busqueda)
+    self.tree = ttk.Label('', text=result ).grid(column=1, row=4)
     
-    return recuperarInfoExcel(hoja,id,busqueda)
-    
+        
+        
 
 def enviarMail(remitente, destinatario, asunto, mensaje, mail_envio, mail_contraseña):
     
